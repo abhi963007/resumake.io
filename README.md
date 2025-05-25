@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/logo.svg" alt="Resumake.io" width="300px" height="auto" />
+<img src="https://raw.githubusercontent.com/saadq/resumake.io/master/static/preview.png" alt="Resumake.io" width="600px" height="auto" />
 
 # Resumake.io
 
