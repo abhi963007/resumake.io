@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 3px rgba(131, 56, 236, 0.3)); }
+      50% { filter: drop-shadow(0 0 8px rgba(131, 56, 236, 0.6)); }
+      100% { filter: drop-shadow(0 0 3px rgba(131, 56, 236, 0.3)); }
+    }
+    .resume-page {
+      animation: float 6s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .header {
+      animation: glow 3s ease-in-out infinite;
+    }
+    .line {
+      animation-name: width-grow;
+      animation-duration: 1.5s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+    }
+    @keyframes width-grow {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .line-1 { animation-delay: 0.2s; }
+    .line-2 { animation-delay: 0.4s; }
+    .line-3 { animation-delay: 0.6s; }
+    .line-4 { animation-delay: 0.8s; }
+    .line-5 { animation-delay: 1.0s; }
+  </style>
+
+  <!-- Main resume document -->
+  <g class="resume-page">
+    <!-- White background with border -->
+    <rect x="120" y="120" width="160" height="200" rx="6" ry="6" fill="white" stroke="#7e57c2" stroke-width="2"/>
+    
+    <!-- Document header -->
+    <rect class="header" x="130" y="130" width="140" height="18" rx="2" ry="2" fill="#7e57c2"/>
+    
+    <!-- Document content -->
+    <g class="content">
+      <!-- Text lines -->
+      <rect class="line line-1" x="130" y="160" width="140" height="6" rx="2" ry="2" fill="#e0e0e0"/>
+      <rect class="line line-2" x="130" y="176" width="100" height="6" rx="2" ry="2" fill="#e0e0e0"/>
+      <rect class="line line-3" x="130" y="200" width="140" height="6" rx="2" ry="2" fill="#e0e0e0"/>
+      <rect class="line line-4" x="130" y="216" width="120" height="6" rx="2" ry="2" fill="#e0e0e0"/>
+      <rect class="line line-5" x="130" y="232" width="130" height="6" rx="2" ry="2" fill="#e0e0e0"/>
+      
+      <!-- Skills section -->
+      <rect x="130" y="260" width="60" height="10" rx="2" ry="2" fill="#9575cd"/>
+      <rect x="130" y="280" width="50" height="8" rx="2" ry="2" fill="#e0e0e0"/>
+      <rect x="130" y="296" width="40" height="8" rx="2" ry="2" fill="#e0e0e0"/>
+    </g>
+  </g>
+  
+  <!-- Small decorative elements -->
+  <circle cx="260" cy="150" r="4" fill="#673ab7" opacity="0.5">
+    <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="230" r="3" fill="#673ab7" opacity="0.5">
+    <animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite"/>
+  </circle>
+</svg>

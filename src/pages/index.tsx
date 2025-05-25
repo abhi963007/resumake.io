@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { lighten, darken } from 'polished'
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 75px;
+  overflow: hidden;
 `
 
 const Main = styled.main`
@@ -19,6 +21,26 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+`
+
+const AnimationWrapper = styled.div`
+  width: 400px;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));
+`
+
+const GradientBg = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 70% 20%, ${colors.indigo}15 0%, transparent 25%),
+              radial-gradient(circle at 30% 80%, ${colors.violet}15 0%, transparent 25%);
+  z-index: 0;
 `
 
 const Footer = styled.footer`
@@ -85,7 +107,16 @@ export default function Home() {
 
   return (
     <Wrapper>
+      <GradientBg />
       <Main>
+        <AnimationWrapper>
+          <img 
+            src="/animations/resume-animation.svg" 
+            alt="Resume animation" 
+            width="320" 
+            height="320" 
+          />
+        </AnimationWrapper>
         <Logo marginBottom="0.75em" />
         <PrimaryButton onClick={startNewSession}>Make New Resume</PrimaryButton>
         {hasSession && (

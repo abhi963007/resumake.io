@@ -12,7 +12,7 @@ import { resumeAtom } from '../../atoms/resume'
 const workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc
 
-const Output = styled.div`
+const PreviewContainer = styled.div`
   grid-area: preview;
   background: ${colors.card};
   overflow-y: auto;
@@ -20,6 +20,7 @@ const Output = styled.div`
   display: flex;
   flex-direction: column;
   border-left: 1px solid ${colors.borders};
+  height: 100%;
 `
 
 const PreviewHeader = styled.div`
@@ -44,6 +45,15 @@ const ActionButtons = styled.div`
   display: flex;
   gap: 1rem;
 `
+
+// Helper function to convert hex colors to RGB for use in rgba
+function hexToRgb(hex: string) {
+  hex = hex.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return `${r}, ${g}, ${b}`;
+}
 
 const ActionButton = styled.button`
   display: flex;
@@ -91,6 +101,7 @@ const PdfContainer = styled.article`
   background-color: #f5f5f5;
   min-height: calc(100vh - 10vh - 60px);
   box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.05);
+  overflow: auto;
 `
 
 const ResumeDocument = styled(Document)`
@@ -146,6 +157,10 @@ const ErrorContainer = styled.div`
   color: ${colors.placeholder};
   gap: 1rem;
   text-align: center;
+  background-color: ${rgba(colors.card, 0.8)};
+  border-radius: 8px;
+  margin: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
   svg {
     color: ${colors.accent};
@@ -162,17 +177,9 @@ const ErrorContainer = styled.div`
   p {
     max-width: 400px;
     margin: 0.5rem 0 1.5rem 0;
+    line-height: 1.6;
   }
 `
-
-// Helper function to convert hex colors to RGB for use in rgba
-function hexToRgb(hex: string) {
-  hex = hex.replace('#', '');
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
 
 export function Preview() {
   const [resume] = useAtom(resumeAtom)
@@ -212,9 +219,9 @@ export function Preview() {
   )
 
   return (
-    <Output>
+    <PreviewContainer>
       <PreviewHeader>
-        <PreviewTitle>Preview</PreviewTitle>
+        <PreviewTitle>Resume Preview</PreviewTitle>
         <ActionButtons>
           <ActionButton 
             onClick={() => window.open(resume.url)}
@@ -250,6 +257,6 @@ export function Preview() {
           </ResumeDocument>
         )}
       </PdfContainer>
-    </Output>
+    </PreviewContainer>
   )
 }
